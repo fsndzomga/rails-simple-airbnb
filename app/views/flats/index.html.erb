@@ -1,14 +1,50 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Flats</h1>
+    <div class="container my-3">
+      <h1>All our flats (<%= @flats.count %>)</h1>
 
-<div id="flats">
-  <% @flats.each do |flat| %>
-    <%= render flat %>
-    <p>
-      <%= link_to "Show this flat", flat %>
-    </p>
-  <% end %>
-</div>
+       <div class="row">
+      <% @flats.each do |flat| %>
+      <div class="col-md-4 d-flex " style="height: 15rem;">
+        <div class="card mb-3 w-100 align-items-stretch">
+          <!-- Your flat card content goes here -->
+          <%# <div class="flat-card-image" style="background-image: url('https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200')"></div> %>
+          <div class="flat-card-content bg-light p-3" style="height: 11rem;">
+            <div class="flat-card-title">
+              <h4><%= flat.name %></h4>
+            </div>
+            <p><%= flat.address %></p>
+            <div class="d-flex my-2">
+              <div class="flex align-items-center">
+                <i class="fa-solid fa-people-line"></i>
+                <span><%= flat.number_of_guests %></span>
+              </div>
+              <div class="flex align-items-center ms-3">
+                <i class="fa-solid fa-euro-sign"></i>
+                <span><%= flat.price_per_night %></span>
+              </div>
+            </div>
+          </div>
+          <div class="flat-card-actions p-1 d-flex justify-content-end align-items-end">
+            <%= link_to "More info", flat_path(flat), class: "text-primary" %>
+            <%= link_to "Edit", edit_flat_path(flat), class: "text-warning ms-3" %>
+            <%= link_to "Remove", flat_path(flat), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger ms-3" %>
+          </div>
+
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+
+
+<%# <div id="flats"> %>
+  <%# <% @flats.each do |flat| %>
+    <%# <%= render flat %>
+    <%# <p> %>
+      <%# <%= link_to "Show this flat", flat %>
+    <%# </p> %>
+  <%# <% end %>
+<%# </div> %>
 
 <%= link_to "New flat", new_flat_path %>
